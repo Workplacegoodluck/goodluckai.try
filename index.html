@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT AI</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Remove all scrollbars */
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #80868a7a; /* Your header background color */
+            color: #fff;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 40px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        .company-name {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .chat-container {
+            background-color: #ffffff43; /* Chat background color */
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 200px;
+            max-width: 800px; /* Adjust the maximum width as needed */
+            width: 100%;
+            margin: 80px auto; /* Center the chat container */
+            position: relative;
+            z-index: 0;
+        }
+
+        /* Additional styles for your chat interface */
+        .chat-messages {
+            max-height: 300px; /* Adjust the maximum height as needed */
+            overflow-y: auto;
+        }
+
+        .user-message {
+            background-color: #e0e0e030; /* User message background color */
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: right;
+        }
+
+        .bot-message {
+            background-color: #837f7f7d; /* Bot message background color */
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        .input-box {
+            background-color: #ffffff; /* Chat background color */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(255, 255, 255, 0);
+            padding: 5px;
+            max-width: 800px; /* Adjust the maximum width as needed */
+            width: 90%;
+            margin: -100px auto; /* Center the chat container */
+            position: relative;
+            z-index: 2; /* Place the input box above the chat container */
+        }
+
+        .input-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    position: fixed;
+    margin-bottom: 10px;
+    margin-left: 330px;
+    bottom: 10px;
+    background-color: #fff;
+    width: 100%;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0);
+    z-index: 2; /* Place the input box above the chat container */
+}
+
+
+
+    
+
+        input[type="text"] {
+            flex: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button {
+            background-color: #626067d0; /* Send button background color */
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the video covers the entire viewport */
+            z-index: -1; /* Place the video behind other content */
+        }
+
+        /* Additional styles for your content */
+        .content {
+            position: fixed;
+            z-index: 1; /* Place it above the video */
+            text-align: center;
+            color: #140b98;
+            margin-top: -600px;
+            margin-left: 561px;
+            padding: 1px;
+            size: 100px;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop id="background-video">
+        <source src="video_preview_h264.mp4" type="video/mp4">
+        <!-- Add additional sources for other video formats -->
+        Your browser does not support the video tag.
+    </video>
+    <header>
+        <div class="logo">
+            <img src="logo.png.png" alt="Company Logo">
+            <div class="company-name">Goodluck AI</div>
+        </div>
+        <!-- Add any additional header content here -->
+    </header>
+    <div class="chat-container" id="chat-container">
+        <!-- User message with logo -->
+        <div class="message user-message">
+            
+            Hello, I have a question.
+        </div>
+        
+        <!-- Bot message with logo -->
+        <div class="message bot-message">
+            
+            Sure, what can I help you with?
+        </div>
+        
+        <!-- Add more user and bot messages as needed -->
+    </div>
+    
+    <div class="input-box">
+        <input type="text" id="user-input" placeholder="Type your message">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        const chatContainer = document.getElementById('chat-container');
+        const userInput = document.getElementById('user-input');
+
+        function sendMessage() {
+            const userMessage = userInput.value.trim();
+            if (userMessage === '') {
+                return;
+            }
+
+            // Create and append the user message
+            appendMessage(userMessage, 'user');
+
+            // Simulate a bot response (replace with actual chatbot logic)
+            setTimeout(() => {
+                const botResponse = 'This is a sample bot response.';
+                appendMessage(botResponse, 'bot');
+            }, 1000);
+
+            // Clear the user input
+            userInput.value = '';
+        }
+
+        function appendMessage(messageText, messageType) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `${messageType}-message`;
+            messageDiv.textContent = messageText;
+            chatContainer.appendChild(messageDiv);
+
+            // Scroll to the bottom of the chat
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+    </script>
+</body>
+</html>
+
+</nav>
+</header>
+<div class="content">
+    <!-- Your website content goes here -->
+    <h2>AI Powered Goodluck ChatGPT</h2>
+    <a  href="https://openai.com/research/overview">
+        <button class="transparent">GPT-3.5</button>
+    
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
